@@ -2,6 +2,13 @@
 ### CMAKE is a makefile/solution generator
 
 CMAKE generates platforms specific projects e.g. .sln for MS, Makefile for unix, .xcodeproj for macs etc.
+One can list available generators on system using:
+`cmake --help`
+
+How they work internally (how do they choose default generator for given platform)?
+e.g. on windows:
+It appears that CMake looks at the Windows Registry to determine which generator to use. It searches the Visual Studio registry subkeys (6.0, 7.0, etc) in [HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\VisualStudio\\ for an entry called InstallDir. If one is found, it uses the corresponding generator. (It will use the newest version of Visual Studio available.) Otherwise, it uses the NMake generator.
+
 
 ### Why is `cmake ..` used frequently from a build dir?
 
@@ -15,6 +22,11 @@ CMakeLists.txt files can reference other CMakeLists.txt file in sub-directories,
 Using an empty "build" directory is a technique called "out-of-source build", in which all your generated files (.o, executable, Makefile, .anything) are generated in the separate "build" directory and not mixed with source files. If you want to clean all, you can delete all the content of the build directory.
 
 In fact, you can put your "build" directory in any place, as long as you give cmake the correct path of the top CMakeLists.txt. You can even have several build directories. It is very useful if you need several different builds at the same time (with different options, different versions of gcc, etc.)
+
+### `Cmake ..` vs `cmake --build .`
+
+cmake takes in Cmakelists.txt and populates given directory with the system makefiles.
+cmake --build runs those make files to fulfill targets
 
 ### CMAKE directories
 
