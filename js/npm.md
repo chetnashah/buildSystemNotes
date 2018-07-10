@@ -43,7 +43,26 @@ all subsequent packages created will have scope prepended in packagename.
 npm publish --access=public
 ```
 
+### running npm command in a different directory.
 
+Let's say we have following project structure
+```
+- client
+  - app.js
+  - package.json
+- src
+- package.json
+```
+
+We want to do a `npm install` of `client/package.json` first,
+
+We can run npm commands using a `--prefix` flag specifying the
+directory where the commands needs to be run.
+
+e.g.
+```sh
+npm run --prefix client build
+```
 
 
 
