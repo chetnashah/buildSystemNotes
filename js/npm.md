@@ -20,6 +20,16 @@ The four relevant files are:
 
 All npm config files are an ini-formatted list of key = value parameters. Environment variables can be replaced using ${VARIABLE_NAME}. For example:
 
+### How `npm init abc` works
+
+The init command is transformed to a corresponding npx operation as follows:
+```
+npm init foo -> npx create-foo
+```
+
+e.g. `npm init react-app my-react-proj` will do
+`npx create-react-app my-react-proj`
+
 ### Check who owns package/if package is available
 
 ```sh
